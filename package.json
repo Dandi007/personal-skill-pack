@@ -1,0 +1,11 @@
+{
+  "name": "@uther/personal-skill-pack",
+  "version": "0.1.0",
+  "description": "Personal cross-platform AI agent skill pack for project-scoped installation.",
+  "type": "commonjs",
+  "bin": {"personal-skill-pack": "bin/install.js"},
+  "scripts": {"test": "node --test test/*.test.js", "install:local": "node bin/install.js install"},
+  "files": ["bin/", "skills/", "templates/", "README.md"],
+  "engines": {"node": ">=20"},
+  "license": "MIT"
+}
