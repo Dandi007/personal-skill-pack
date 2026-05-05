@@ -38,3 +38,11 @@ npm run install:local
 - 本包只负责复制本包拥有的 skills。
 - 不自动 push、不创建远端 repo、不发布 npm package。
 - 项目侧 AGENTS 模板见 `templates/AGENTS.md`。
+
+## Minimal verification matrix
+
+| Platform | Command or action | Expected result |
+|----------|-------------------|-----------------|
+| Filesystem | `find .agents/skills -name SKILL.md -print | sort` | three `SKILL.md` files for `checkpoint`, `skill-manager`, `work-folder` |
+| OpenCode | `opencode debug skill` | the three installed skills are listed |
+| Codex | start a Codex session in the target repo and ask for a matching workflow | Codex follows the AGENTS.md-aware `.agents/skills/` convention and uses the matching skill |
