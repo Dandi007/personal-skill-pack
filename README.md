@@ -45,4 +45,25 @@ npm run install:local
 |----------|-------------------|-----------------|
 | Filesystem | `find .agents/skills -name SKILL.md -print | sort` | three `SKILL.md` files for `checkpoint`, `skill-manager`, `work-folder` |
 | OpenCode | `opencode debug skill` | the three installed skills are listed |
-| Codex | start a Codex session in the target repo and ask for a matching workflow | Codex follows the AGENTS.md-aware `.agents/skills/` convention and uses the matching skill |
+| Codex | copy `templates/AGENTS.md` to target `AGENTS.md`, then start a Codex session in the target repo and ask for a matching workflow | Codex follows the AGENTS.md-aware `.agents/skills/` convention and uses the matching skill |
+
+### Codex target 初始化
+
+Codex 依赖目标 repo 内的 `AGENTS.md` 说明 `.agents/skills/` 约定。安装 skills 后，需要显式复制本包模板：
+
+```bash
+cp <package-repo>/templates/AGENTS.md <target>/AGENTS.md
+```
+
+本地最短验证路径：
+
+```bash
+target=$(mktemp -d)
+REPO_ROOT=/path/to/personal-skill-pack
+node "$REPO_ROOT/bin/install.js" install --target "$target"
+cp "$REPO_ROOT/templates/AGENTS.md" "$target/AGENTS.md"
+test -f "$target/AGENTS.md"
+test -f "$target/.agents/skills/skill-manager/SKILL.md"
+test -f "$target/.agents/skills/work-folder/SKILL.md"
+test -f "$target/.agents/skills/checkpoint/SKILL.md"
+```
