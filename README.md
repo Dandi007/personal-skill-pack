@@ -47,6 +47,16 @@ npm run install:local
 | OpenCode | `opencode debug skill` | the three installed skills are listed |
 | Codex | copy `templates/AGENTS.md` to target `AGENTS.md`, then start a Codex session in the target repo and ask for a matching workflow | Codex follows the AGENTS.md-aware `.agents/skills/` convention and uses the matching skill |
 
+如果全局 OpenCode config 已加载大量 user-level skills，`opencode debug skill` 输出可能很长，不利于人工确认 project-scoped skills。可用隔离 `HOME` 做 discovery-only 验证：
+
+```bash
+target=$(mktemp -d)
+node bin/install.js install --target "$target"
+(cd "$target" && HOME=$(mktemp -d) opencode debug skill --log-level WARN)
+```
+
+输出应包含来自 `$target/.agents/skills/` 的 `checkpoint`、`skill-manager` 和 `work-folder`。
+
 ### Codex target 初始化
 
 Codex 依赖目标 repo 内的 `AGENTS.md` 说明 `.agents/skills/` 约定。安装 skills 后，需要显式复制本包模板：
