@@ -1,3 +1,5 @@
+> **⚠️ Superseded by [katana](https://github.com/Dandi007/katana)** — checkpoint and work-folder now ship as official Claude Code plugins in the katana marketplace; the npx installer approach is retired. This repo is archived.
+
 # personal-skill-pack
 
 个人跨平台 AI Agent Skill Pack，用于把稳定维护的 project-scoped skills 安装到目标 repo 的 `.agents/skills/` 目录。
